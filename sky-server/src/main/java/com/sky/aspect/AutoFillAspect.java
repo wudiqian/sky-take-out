@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Component
 @Slf4j
 public class AutoFillAspect {
-    //切入点
+    //定义切入点
     @Pointcut("execution(* com.sky.mapper.*.*(..)) &&@annotation(com.sky.annotation.AutoFill)")
     public void autoFillPointCut(){
 
