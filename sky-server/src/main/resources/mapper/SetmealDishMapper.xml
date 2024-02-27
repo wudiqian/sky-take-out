@@ -11,6 +11,15 @@
         </foreach>
     </select>
 
+
+
+    <select id="getSetmealIdsByDishId" resultType="java.lang.Long">
+        SELECT setmeal_id
+        FROM setmeal_dish
+        WHERE dish_id = #{dishId}
+    </select>
+
+
     <update id="update">
         update setmeal
         <set>
