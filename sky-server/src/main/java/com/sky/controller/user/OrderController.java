@@ -21,12 +21,13 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
     @PostMapping("/submit")
     @ApiOperation("用户下单")
-    public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO){
-        log.info("用户下单，参数为{}",ordersSubmitDTO);
-            OrderSubmitVO orderSubmitVO=orderService.submitOrder(ordersSubmitDTO);
-            return Result.success(orderSubmitVO);
+    public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO) {
+        log.info("用户下单，参数为{}", ordersSubmitDTO);
+        OrderSubmitVO orderSubmitVO = orderService.submitOrder(ordersSubmitDTO);
+        return Result.success(orderSubmitVO);
     }
 
     /**
@@ -45,7 +46,6 @@ public class OrderController {
         orderService.paySuccess(ordersPaymentDTO.getOrderNumber());
         return Result.success(orderPaymentVO);
     }
-
 
 
     @GetMapping("/historyOrders")
@@ -95,6 +95,13 @@ public class OrderController {
         return Result.success();
     }
 
+
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("客户催单")
+    public Result reminder(@PathVariable Long id) {
+        orderService.reminder(id);
+        return Result.success();
+    }
 
 
 }
